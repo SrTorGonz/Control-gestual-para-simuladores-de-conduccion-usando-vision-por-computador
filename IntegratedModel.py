@@ -13,13 +13,13 @@ import math
 import keyboard
 
 # =====================================================
-# CONTROL XBOX VIRTUAL
+#  XBOX VIRTUAL CONTROL
 # =====================================================
 
 gamepad = vg.VX360Gamepad()
 
 # =====================================================
-# CARGAR MODELO
+# LOAD MODEL
 # =====================================================
 
 model = tf.keras.Sequential([
@@ -76,7 +76,7 @@ STEERING_SENSITIVITY = 0.8
 DEADZONE = 2500
 
 # =====================================================
-# NORMALIZACION
+# NORMALIZATION
 # =====================================================
 
 def normalize_hand(coords):
@@ -90,7 +90,7 @@ def normalize_hand(coords):
     return coords.flatten()
 
 # =====================================================
-# DIRECCION
+# DIRECTION
 # =====================================================
 
 def calculate_steering(left_wrist, right_wrist):
@@ -153,7 +153,7 @@ while True:
 
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-    # OPTIMIZACION
+    # OPTIMIZATIONS
     rgb.flags.writeable = False
 
     results = hands.process(rgb)
@@ -167,7 +167,7 @@ while True:
     left_wrist = None
 
     # =================================================
-    # DETECTAR MANOS
+    # DETECT HANDS
     # =================================================
 
     if results.multi_hand_landmarks:
@@ -219,7 +219,7 @@ while True:
     brake = prediction[1] > 0.5
 
     # =================================================
-    # GATILLOS
+    # TRIGGERS
     # =================================================
 
     gamepad.right_trigger(
@@ -231,7 +231,7 @@ while True:
     )
 
     # =================================================
-    # DIRECCION
+    # DIRECTION
     # =================================================
 
     if left_wrist and right_wrist:
@@ -270,7 +270,7 @@ while True:
             button=vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER
         )
     # =================================================
-    # ENVIAR INPUTS
+    # SEND INPUTS
     # =================================================
 
     gamepad.update()
@@ -316,7 +316,7 @@ while True:
         break
 
 # =====================================================
-# CERRAR
+# CLOSE
 # =====================================================
 
 cap.release()
